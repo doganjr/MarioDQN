@@ -39,8 +39,6 @@ class Memory():
             m1, m2 = torch.mean(self.x_loc[idx1]), torch.mean(self.x_loc[idx2])
             batch_index = float(m1 > m2) * idx1 + float(m2 >= m1) * idx2
 
-        batch_index = np.random.choice(np.minimum(self.mem_total, self.max_mem), batch_size, replace=True)
-
         state_batch = self.state_memory[batch_index].to(self.device)
         action_batch = self.action_memory[batch_index].to(self.device)
         reward_batch = self.reward_memory[batch_index].to(self.device)
